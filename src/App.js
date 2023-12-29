@@ -138,44 +138,48 @@ function App() {
 
   return (
     <div className="container mx-auto max-w-7xl p-6 bg-white">
-{!isGameStarted ? (
-  <section className="text-gray-600 body-font">
-    <div className="container mx-auto flex px-5 py-24 items-center justify-center flex-col">
-      <img className="lg:w-2/6 md:w-3/6 w-5/6 mb-10 object-cover object-center rounded" alt="hero" src="https://dummyimage.com/720x600"/>
-      <div className="text-center lg:w-2/3 w-full">
-        <h1 className="title-font sm:text-4xl text-3xl mb-4 font-medium text-gray-900">新年START神経衰弱</h1>
-        <p className="mb-8 leading-relaxed">ルール説明</p>
-        <p className="mb-8 leading-relaxed">初級：カードをめくって同じ絵を見つけてください</p>
-        <p className="mb-8 leading-relaxed">上級：初級のルール＋STARTの順に揃えてください（Tを揃える順番も指定されています）</p>
-        <div className="flex justify-center">
-          <button className="inline-flex text-white bg-pink-500 border-0 py-2 px-6 focus:outline-none hover:bg-pink-600 rounded text-lg" onClick={() => startGame('simple')}>初級</button>
-          <button className="ml-4 inline-flex text-gray-700 bg-gray-100 border-0 py-2 px-6 focus:outline-none hover:bg-gray-200 rounded text-lg" onClick={() => startGame('advanced')}>上級</button>
+    {!isGameStarted ? (
+      <section className="text-gray-600 body-font">
+        <div className="container mx-auto flex px-5 py-24 items-center justify-center flex-col">
+          <div className="aspect-w-16 aspect-h-9 w-full rounded overflow-hidden">
+            <img className="w-full h-full object-cover rounded" alt="hero" src="/img/top.jpg" />
+          </div>
+          <div className="text-center lg:w-2/3 w-full">
+            <br></br>
+            <h1 className="title-font sm:text-4xl text-3xl mb-4 font-medium text-gray-900">新年START神経衰弱</h1>
+            <p className="mb-8 leading-relaxed">ルール説明</p>
+            <p className="mb-8 leading-relaxed">初級：カードをめくって同じ絵を見つけてください</p>
+            <p className="mb-8 leading-relaxed">上級：初級のルール＋STARTの順に揃えてください
+            <br></br>（Tを揃える順番も指定されています）</p>
+            <div className="flex justify-center">
+              <button className="inline-flex text-white bg-blue-300 border-0 py-2 px-6 focus:outline-none hover:bg-pink-600 rounded text-lg" onClick={() => startGame('simple')}>初級</button>
+              <button className="ml-4 inline-flex text-gray-700 bg-yellow-200 border-0 py-2 px-6 focus:outline-none hover:bg-gray-200 rounded text-lg" onClick={() => startGame('advanced')}>上級</button>
+            </div>
+          </div>
         </div>
-      </div>
-    </div>
-  </section>
+      </section>
       ) : (
-        // ゲームが開始した場合の表示内容
-        <div>
-          <div className="start-screen">
-          <h1>新年START神経衰弱：{modeText}</h1>
-          </div>
-          <div className="cards-container">
-            {cards.map((card) => (
-              <Card
-                key={card.id}
-                card={card}
-                isChecking={isChecking}  // isCheckingをCardコンポーネントに渡す
-                selectedCards={selectedCards}
-                setselectedCards={setselectedCards}
-                playSound={() => playSound(flipSound)}  // 効果音関数を渡す
-                gameMode={gameMode}  // ゲームモードを渡す
-              />
-            ))}
-          </div>
-          <div className="tries-count">
-            <h2>現在の手数: {tries}</h2>
-          </div>
+      // ゲームが開始した場合の表示内容
+      <div>
+        <div className="start-screen">
+          <h2 className="title-font sm:text-4xl text-3xl mb-4 font-medium text-gray-900">新年START神経衰弱：{modeText}</h2>
+        </div>
+        <div className="cards-container grid grid-cols-2 sm:grid-cols-3 md:grid-cols-4 lg:grid-cols-5 gap-4">
+          {cards.map((card) => (
+            <Card
+              key={card.id}
+              card={card}
+              isChecking={isChecking}  // isCheckingをCardコンポーネントに渡す
+              selectedCards={selectedCards}
+              setselectedCards={setselectedCards}
+              playSound={() => playSound(flipSound)}  // 効果音関数を渡す
+              gameMode={gameMode}  // ゲームモードを渡す
+            />
+          ))}
+        </div>
+        <div className="tries-count">
+          <h2>現在の手数: {tries}</h2>
+        </div>
         {/* ゲームクリアメッセージと共有ボタンを条件付きで表示 */}
         {isGameCleared && (
         <div className="game-clear-message">

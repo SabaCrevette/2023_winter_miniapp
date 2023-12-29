@@ -30,12 +30,12 @@ const Card = ({ card, gameMode, isChecking, selectedCards, setselectedCards, pla
   }, [selectedCards, card]);
 
   return (
-    <div className={isFlipped ? "card open" : "card"} onClick={handleClick}>
+    <div className={isFlipped ? "card open w-full h-auto" : "card w-full h-auto"} onClick={handleClick}>
       <div className="front">
-        <img src={card.img} alt="" />
+        <img src={card.img} alt="" className="object-cover w-full h-full" />
       </div>
       <div className="back">
-        <img src={backImageSrc} alt="" /> 
+        <img src={backImageSrc} alt="" className="object-cover w-full h-full" />
       </div>
     </div>
   );
