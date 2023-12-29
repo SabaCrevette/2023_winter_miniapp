@@ -1,5 +1,6 @@
 import { useEffect, useState } from "react";
 import Card from "./components/Card";
+import Footer from './components/Footer'; // Footerコンポーネントをインポート
 import './App.css';
 import { simpleImages, advancedImages } from './cardImages.js';
 
@@ -36,17 +37,22 @@ function App() {
   };
 
   const shuffleImages = (mode) => {
-    let imagesToUse = mode === 'simple' ? simpleImages : advancedImages;
-    let shuffledImages = [...imagesToUse, ...imagesToUse]
-      .map((item, index) => ({...item, id: index + 1}))
-      .sort((a, b) => 0.5 - Math.random());
-
-    setCards(shuffledImages);
+    return new Promise((resolve) => {
+      let imagesToUse = mode === 'simple' ? simpleImages : advancedImages;
+      let shuffledImages = [...imagesToUse, ...imagesToUse]
+        .map((item, index) => ({...item, id: index + 1}))
+        .sort((a, b) => 0.5 - Math.random());
+  
+      setCards(shuffledImages);
+      // 小さな遅延を追加して、状態が更新されるのを確実にします。
+      setTimeout(() => resolve(), 100);
+    });
   };
 
   // ゲームを再プレイする関数
-  const replayGame = () => {
-    shuffleImages(gameMode); // 現在のゲームモードでシャッフル
+  const replayGame = async () => {
+    await shuffleImages(gameMode); // 1回目のシャッフル
+    await shuffleImages(gameMode); // 2回目のシャッフル
     setTries(0);
     setCurrentTurn(1);
     setIsGameCleared(false);
@@ -157,6 +163,7 @@ function App() {
             </div>
           </div>
         </div>
+        <Footer />
       </section>
       ) : (
       // ゲームが開始した場合の表示内容
@@ -176,6 +183,14 @@ function App() {
               gameMode={gameMode}  // ゲームモードを渡す
             />
           ))}
+        </div>
+        <div className="flex flex-col md:flex-row justify-between mt-4">
+          <button onClick={replayGame} className="text-black bg-blue-200 hover:bg-blue-300 py-2 px-4 rounded mb-4 md:mb-0">
+            やり直す
+          </button>
+        <button onClick={resetGame} className="text-black bg-green-400 hover:bg-green-500 py-2 px-4 rounded">
+          難易度選択へ戻る
+        </button>
         </div>
         <div className="tries-count">
           <h2>現在の手数: {tries}</h2>
