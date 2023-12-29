@@ -151,16 +151,19 @@ function App() {
     {!isGameStarted ? (
       <section className="text-gray-600 body-font">
         <div className="container mx-auto flex px-5 py-24 items-center justify-center flex-col">
-          <div className="aspect-w-16 aspect-h-9 w-full rounded overflow-hidden">
-            <img className="w-full h-full object-cover rounded" alt="hero" src="/img/top.jpg" />
-          </div>
+        <div className="aspect-w-16 aspect-h-9 w-full rounded overflow-hidden 2xl:w-1/2 2xl:mx-auto xl:w-1/2 xl:mx-auto lg:w-1/2 lg:mx-auto">
+          <img className="w-full h-full object-cover rounded" alt="hero" src="/img/top.jpg" />
+        </div>
           <div className="text-center lg:w-2/3 w-full">
             <br></br>
             <h1 className="title-font sm:text-4xl text-3xl mb-4 font-medium text-gray-900">新年START神経衰弱</h1>
             <p className="mb-8 leading-relaxed">ルール説明</p>
-            <p className="mb-8 leading-relaxed">初級：カードをめくって同じ絵を見つけてください</p>
-            <p className="mb-8 leading-relaxed">上級：初級のルール＋STARTの順に揃えてください
-            <br></br>（Tを揃える順番も指定されています）</p>
+            <p className="mb-8 leading-relaxed sm:whitespace-nowrap sm:overflow-hidden sm:text-overflow-ellipsis">
+              初級：カードをめくって同じ絵を見つけてください
+            </p>
+            <p className="mb-8 leading-relaxed sm:whitespace-nowrap sm:overflow-hidden sm:text-overflow-ellipsis">
+              上級：初級のルール＋STARTの順に揃えてください<br></br>（Tを揃える順番も指定されています）
+            </p>
 
             <label className="swap swap-rotate mb-4">
               {/* 隠されたチェックボックスが状態を制御します */}
