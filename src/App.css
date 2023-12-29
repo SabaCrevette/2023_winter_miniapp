@@ -46,6 +46,11 @@ img {
   transition: 0.3s ease;
 }
 
+.front {
+  height: 99%;
+  width: 99%;
+}
+
 .back {
   height: 100%;
   width: 100%;
