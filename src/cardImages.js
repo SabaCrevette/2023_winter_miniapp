@@ -2,6 +2,7 @@
 export const simpleImages = [
   {
     num: 1,
+    turn: 1,
     img: "./img/S.PNG",
     isMatched: false
   },
@@ -35,6 +36,7 @@ export const simpleImages = [
 export const advancedImages = [
   {
     num: 1,
+    turn: 1,
     img: "./img/S.PNG",
     isMatched: false
   },
