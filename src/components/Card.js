@@ -18,7 +18,7 @@ const Card = ({ card, gameMode, isChecking, selectedCards, setselectedCards, pla
   };
 
   // ゲームモードに応じた画像ソースを設定
-  const backImageSrc = gameMode === 'simple' ? "/img/saba.PNG" : "/img/1saba.png";
+  const backImageSrc = gameMode === 'simple' ? "/img/saba.jpg" : "/img/1saba.jpg";
 
   // カードのフリップ状態を更新する useEffect
   useEffect(() => {
