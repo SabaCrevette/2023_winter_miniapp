@@ -1,7 +1,7 @@
 import { useEffect, useState } from "react";
 
 // isChecking プロパティを追加
-const Card = ({ card, isChecking, selectedCards, setselectedCards, playSound }) => {
+const Card = ({ card, gameMode, isChecking, selectedCards, setselectedCards, playSound }) => {
   const [isFlipped, setIsFlipped] = useState(false);  // isFlipped に名前を変更
 
   const handleClick = () => {
@@ -16,6 +16,9 @@ const Card = ({ card, isChecking, selectedCards, setselectedCards, playSound }) 
     // カードを選択カードのリストに追加
     setselectedCards([...selectedCards, card]);
   };
+
+  // ゲームモードに応じた画像ソースを設定
+  const backImageSrc = gameMode === 'simple' ? "/img/saba.PNG" : "/img/1saba.png";
 
   // カードのフリップ状態を更新する useEffect
   useEffect(() => {
@@ -32,7 +35,7 @@ const Card = ({ card, isChecking, selectedCards, setselectedCards, playSound }) 
         <img src={card.img} alt="" />
       </div>
       <div className="back">
-        <img src="/img/saba.PNG" alt="" />
+        <img src={backImageSrc} alt="" /> 
       </div>
     </div>
   );

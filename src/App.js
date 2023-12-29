@@ -142,7 +142,11 @@ function App() {
         <div className="start-screen">
           <h1>新年START神経衰弱</h1>
           <h4>ルール説明</h4>
-          <p>カードをめくって同じ絵を見つけよう！</p>
+          <p>初級：カードをめくって同じ絵を見つけてください</p>
+          <p>
+            上級：初級のルール＋STARTの順に揃えてください<br></br>
+            （Tを揃える順番も指定されています）
+          </p>
           {/* ゲームモード選択 */}
           <button onClick={() => startGame('simple')}>初級</button>
           <button onClick={() => startGame('advanced')}>上級</button>
@@ -162,6 +166,7 @@ function App() {
                 selectedCards={selectedCards}
                 setselectedCards={setselectedCards}
                 playSound={() => playSound(flipSound)}  // 効果音関数を渡す
+                gameMode={gameMode}  // ゲームモードを渡す
               />
             ))}
           </div>
