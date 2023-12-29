@@ -1,36 +1,9 @@
 import { useEffect, useState } from "react";
 import Card from "./components/Card";
 import './App.css';
+import images from './cardImages.js';
 
 function App() {
-  let images = [
-    {
-      num: 1, // numberはペアを識別するために使う
-      img: "./img/S.PNG",
-      isMatched: false
-    },
-    {
-      num: 2,
-      img: "./img/T.PNG",
-      isMatched: false
-    },
-    {
-      num: 3,
-      img: "./img/A.PNG",
-      isMatched: false
-    },
-    {
-      num: 4,
-      img: "./img/R.PNG",
-      isMatched: false
-    },
-    {
-      num: 5,
-      img: "./img/T2.PNG",
-      isMatched: false
-    },
-  ]
-
   const [cards, setCards] = useState([]);
   const [selectedCards, setselectedCards] = useState([]);
   const [tries, setTries] = useState(0);
@@ -68,7 +41,7 @@ function App() {
 
   // Twitterで共有するためのURLを生成する関数
   const shareOnTwitter = () => {
-    const text = `${tries}手でクリアしました！ #新年START神経衰弱`;
+    const text = `${tries}手でクリアしました！ https://winter-miniapp-2023-10a6b1683e30.herokuapp.com #新年START神経衰弱`;
     const url = `https://twitter.com/intent/tweet?text=${encodeURIComponent(text)}`;
     window.open(url, '_blank');
   }
@@ -92,6 +65,10 @@ function App() {
 
   return (
     <div className="container">
+      <div className="">
+        <h1>新年START神経衰弱</h1>
+        ルール
+      </div>
       <div className="cards-container">
         {cards.map((card)=>(
           <Card
