@@ -137,20 +137,23 @@ function App() {
   };
 
   return (
-    <div className="container">
-      {!isGameStarted ? (
-        <div className="start-screen">
-          <h1>新年START神経衰弱</h1>
-          <h4>ルール説明</h4>
-          <p>初級：カードをめくって同じ絵を見つけてください</p>
-          <p>
-            上級：初級のルール＋STARTの順に揃えてください<br></br>
-            （Tを揃える順番も指定されています）
-          </p>
-          {/* ゲームモード選択 */}
-          <button onClick={() => startGame('simple')}>初級</button>
-          <button onClick={() => startGame('advanced')}>上級</button>
+    <div className="container mx-auto max-w-7xl p-6 bg-white">
+{!isGameStarted ? (
+  <section className="text-gray-600 body-font">
+    <div className="container mx-auto flex px-5 py-24 items-center justify-center flex-col">
+      <img className="lg:w-2/6 md:w-3/6 w-5/6 mb-10 object-cover object-center rounded" alt="hero" src="https://dummyimage.com/720x600"/>
+      <div className="text-center lg:w-2/3 w-full">
+        <h1 className="title-font sm:text-4xl text-3xl mb-4 font-medium text-gray-900">新年START神経衰弱</h1>
+        <p className="mb-8 leading-relaxed">ルール説明</p>
+        <p className="mb-8 leading-relaxed">初級：カードをめくって同じ絵を見つけてください</p>
+        <p className="mb-8 leading-relaxed">上級：初級のルール＋STARTの順に揃えてください（Tを揃える順番も指定されています）</p>
+        <div className="flex justify-center">
+          <button className="inline-flex text-white bg-pink-500 border-0 py-2 px-6 focus:outline-none hover:bg-pink-600 rounded text-lg" onClick={() => startGame('simple')}>初級</button>
+          <button className="ml-4 inline-flex text-gray-700 bg-gray-100 border-0 py-2 px-6 focus:outline-none hover:bg-gray-200 rounded text-lg" onClick={() => startGame('advanced')}>上級</button>
         </div>
+      </div>
+    </div>
+  </section>
       ) : (
         // ゲームが開始した場合の表示内容
         <div>
