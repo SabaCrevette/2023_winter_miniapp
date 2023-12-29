@@ -35,7 +35,7 @@ img {
 }
 
 .card {
-  height: 100%;
+  height: 95%;
   width: 100%;
   /* background-color: rgba(12, 213, 0, 1); */
   display: flex;
@@ -47,8 +47,8 @@ img {
 }
 
 .front {
-  height: 99%;
-  width: 99%;
+  height: 95%;
+  width: 95%;
 }
 
 .back {
