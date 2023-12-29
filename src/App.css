@@ -1,38 +1,101 @@
-.App {
-  text-align: center;
+* {
+  padding: 0;
+  margin: 0;
+  box-sizing: border-box;
 }
 
-.App-logo {
-  height: 40vmin;
-  pointer-events: none;
-}
-
-@media (prefers-reduced-motion: no-preference) {
-  .App-logo {
-    animation: App-logo-spin infinite 20s linear;
-  }
-}
-
-.App-header {
-  background-color: #282c34;
-  min-height: 100vh;
+body {
+  padding-top: 20px; /* 上部の余白 */
+  padding-bottom: 20px; /* 下部の余白 */
   display: flex;
-  flex-direction: column;
   align-items: center;
   justify-content: center;
-  font-size: calc(10px + 2vmin);
+  background-image: linear-gradient(90deg, rgb(239, 221, 186), rgb(217, 235, 229));
+}
+
+.container {
+  border: 50px solod rgb(0, 0, 0);
+}
+
+.cards-container {
+  display: grid;
+  grid-template-columns: repeat(5, 1fr);
+  gap: 1.0rem;
+  transform: scaleX(-1);
+  padding-bottom: 20px; /* 下部の余白 */
+  /* background-color: rgba(231, 249, 221, 0.931); */
+}
+
+img {
+  height: 160px;
+  width: 120px;
+  object-fit: cover;
+  /*background: rgba(12, 213, 0, 1); */
+  /* background: linear-gradient(90deg, rgba(12, 213, 0, 1) 0%, rgba(255, 233, 191, 1) 50%, rgba(12, 213, 0, 1) 100%); */
+}
+
+.card {
+  height: 100%;
+  width: 100%;
+  /* background-color: rgba(12, 213, 0, 1); */
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  position: relative;
+  transform-style: preserve-3d; /* 3Dにする宣言 */
+  transition: 0.3s ease;
+}
+
+.back {
+  height: 100%;
+  width: 100%;
+  position: absolute;
+  backface-visibility: hidden;
+  cursor: pointer;
+  transform: scaleX(-1);
+}
+
+.card.open {
+  transform: rotateY(180deg);
+}
+
+.tries-count {
+  position: absolute;
+  left: 50%;
+  transform: translateX(-50%);
+  font-size: 1.5rem;
+  padding: 10px;
+  background: rgba(255, 255, 255, 0.8);
+  border-radius: 10px;
+  box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+}
+
+.game-clear-message {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  text-align: center;
+  background: white;
+  padding: 20px;
+  border-radius: 10px;
+  box-shadow: 0 4px 8px rgba(0,0,0,0.2);
+  z-index: 10; /* 他の要素より前面に表示 */
+}
+
+.game-clear-message h2 {
+  margin-bottom: 20px;
+}
+
+.game-clear-message button {
+  padding: 10px 20px;
+  background: #101a20; /* Xカラー */
   color: white;
+  border: none;
+  border-radius: 5px;
+  cursor: pointer;
 }
 
-.App-link {
-  color: #61dafb;
-}
-
-@keyframes App-logo-spin {
-  from {
-    transform: rotate(0deg);
-  }
-  to {
-    transform: rotate(360deg);
-  }
+.game-clear-message button:hover {
+  background: #2c343a;
 }
