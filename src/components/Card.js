@@ -1,32 +1,38 @@
 import { useEffect, useState } from "react";
 
-const Card = ({ card, selectedCards, setselectedCards}) => {
-  const [isFripped, setIsFripped] = useState(false);
+// isChecking プロパティを追加
+const Card = ({ card, isChecking, selectedCards, setselectedCards, playSound }) => {
+  const [isFlipped, setIsFlipped] = useState(false);  // isFlipped に名前を変更
 
   const handleClick = () => {
-  // カードがすでにマッチしているか、すでに選択されている場合は何もしない
-  if (card.isMatched || selectedCards.includes(card)) {
-    return;
-  }
-
-  // それ以外の場合は、カードを選択カードのリストに追加
-  setselectedCards([...selectedCards, card]);
-}
-
-  useEffect((()=> {
-    if(selectedCards[0] === card || selectedCards[1] === card || card.isMatched){
-      setIsFripped(true);
-    } else {
-      setIsFripped(false);
+    // 既にマッチしている、選択済み、または判定中の場合は何もしない
+    if (card.isMatched || selectedCards.includes(card) || isChecking) {
+      return;
     }
-  }), [selectedCards])
+
+    // カードをクリックした時の効果音を再生
+    playSound();
+
+    // カードを選択カードのリストに追加
+    setselectedCards([...selectedCards, card]);
+  };
+
+  // カードのフリップ状態を更新する useEffect
+  useEffect(() => {
+    if(selectedCards[0] === card || selectedCards[1] === card || card.isMatched){
+      setIsFlipped(true);
+    } else {
+      setIsFlipped(false);
+    }
+  }, [selectedCards, card]);
+
   return (
-    <div className={isFripped ? "card open" : "card"} onClick={handleClick}>
+    <div className={isFlipped ? "card open" : "card"} onClick={handleClick}>
       <div className="front">
         <img src={card.img} alt="" />
       </div>
       <div className="back">
-      <img src="/img/saba.PNG" alt="" />
+        <img src="/img/saba.PNG" alt="" />
       </div>
     </div>
   );
