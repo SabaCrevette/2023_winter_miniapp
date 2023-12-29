@@ -98,7 +98,7 @@ function App() {
   // Twitterで共有するためのURLを生成する関数
   const shareOnTwitter = () => {
     let modeText = gameMode === 'simple' ? "初級" : "上級";
-    const text = `${modeText}モードを${tries}手でクリアしました！ https://winter-miniapp-2023-10a6b1683e30.herokuapp.com #新年START神経衰弱`;
+    const text = `${modeText}モードを${tries}手でクリアしました！ https://winter-miniapp-2023-10a6b1683e30.herokuapp.com #新年START神経衰弱 #ミニアプリWeek`;
     const url = `https://twitter.com/intent/tweet?text=${encodeURIComponent(text)}`;
     window.open(url, '_blank');
   }
