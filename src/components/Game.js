@@ -1,6 +1,6 @@
 // Game.js
 import React from 'react';
-import Card from "./Card"; // Card コンポーネントのパスに注意してください
+import Card from "./Card";
 
 const Game = ({
     modeText,

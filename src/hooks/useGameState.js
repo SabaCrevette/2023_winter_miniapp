@@ -10,8 +10,6 @@ const useGameState = () => {
   const [gameMode, setGameMode] = useState(null);
   const [isChecking, setIsChecking] = useState(false);
   const [isSoundEnabled, setIsSoundEnabled] = useState(true);
-
-  // ゲームの状態をリセットする関数など、必要に応じて他の関数を追加します。
   
   return {
     isGameStarted, setIsGameStarted,
@@ -22,7 +20,6 @@ const useGameState = () => {
     gameMode, setGameMode,
     isChecking, setIsChecking,
     isSoundEnabled, setIsSoundEnabled,
-    // ...その他の状態管理関数
   };
 };
 

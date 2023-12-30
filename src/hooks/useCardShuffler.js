@@ -12,7 +12,7 @@ const useCardShuffler = (simpleImages, advancedImages) => {
     setCards(shuffledImages);
   };
 
-  return { cards, setCards, shuffleImages }; // 返り値をオブジェクトに変更
+  return { cards, setCards, shuffleImages };
 };
 
 export default useCardShuffler;
