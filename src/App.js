@@ -1,21 +1,28 @@
 import { useEffect, useState } from "react";
+import useGameState from './hooks/useGameState'; // useGameStateをインポート
+
 import Card from "./components/Card";
 import Footer from './components/Footer'; // Footerコンポーネントをインポート
 import './App.css';
 import { simpleImages, advancedImages } from './cardImages.js';
+import useCardShuffler from './hooks/useCardShuffler';
+
+
 
 function App() {
-  const [isGameStarted, setIsGameStarted] = useState(false); // ゲーム開始状態の追加
-  const [cards, setCards] = useState([]);
-  const [selectedCards, setselectedCards] = useState([]);
-  const [tries, setTries] = useState(0);
-  const [isGameCleared, setIsGameCleared] = useState(false); // ゲームクリア状態を追加
+  const { 
+    isGameStarted, setIsGameStarted,
+    selectedCards, setSelectedCards,
+    tries, setTries,
+    isGameCleared, setIsGameCleared,
+    currentTurn, setCurrentTurn,
+    gameMode, setGameMode,
+    isChecking, setIsChecking,
+    isSoundEnabled, setIsSoundEnabled
+  } = useGameState();
 
-  const [currentTurn, setCurrentTurn] = useState(1); // 現在のターン状態の追加
-  const [gameMode, setGameMode] = useState(null); // 'simple' or 'advanced'
-  const [isChecking, setIsChecking] = useState(false);  // 判定中ステートの追加
-  const [isSoundEnabled, setIsSoundEnabled] = useState(true); // 音声効果のオンオフ状態を管理する状態変数
-
+  // useCardShufflerからcards, shuffleImages, そして setCards を受け取る
+  const { cards, setCards, shuffleImages } = useCardShuffler(simpleImages, advancedImages);
 
   // 効果音のファイルパス
   const matchSound = new Audio('/se/match.mp3');
@@ -40,19 +47,6 @@ function App() {
     shuffleImages(mode);  // ゲーム開始時にカードをシャッフル
   };
 
-  const shuffleImages = (mode) => {
-    return new Promise((resolve) => {
-      let imagesToUse = mode === 'simple' ? simpleImages : advancedImages;
-      let shuffledImages = [...imagesToUse, ...imagesToUse]
-        .map((item, index) => ({...item, id: index + 1}))
-        .sort((a, b) => 0.5 - Math.random());
-  
-      setCards(shuffledImages);
-      // 小さな遅延を追加して、状態が更新されるのを確実にします。
-      setTimeout(() => resolve(), 100);
-    });
-  };
-
   // ゲームを再プレイする関数
   const replayGame = async () => {
     await shuffleImages(gameMode); // 1回目のシャッフル
@@ -60,7 +54,7 @@ function App() {
     setTries(0);
     setCurrentTurn(1);
     setIsGameCleared(false);
-    setselectedCards([]);
+    setSelectedCards([]);
   };
 
   // ゲームをリセットしてタイトル画面に戻る関数
@@ -70,7 +64,7 @@ function App() {
     setCurrentTurn(1);
     setIsGameCleared(false);
     setGameMode(null);
-    setselectedCards([]);
+    setSelectedCards([]);
   };
 
   useEffect(() => {
@@ -80,7 +74,7 @@ function App() {
   useEffect(() => {
     if (selectedCards.length === 2){
       setTimeout(()=>{
-        setselectedCards([]);
+        setSelectedCards([]);
       }, 1000);
       checkMatch();
     }
@@ -140,7 +134,7 @@ function App() {
   
       setTries(prev => prev + 1);
       setTimeout(()=>{
-        setselectedCards([]);
+        setSelectedCards([]);
         setIsChecking(false);  // 判定終了
       }, 1000);
     }
@@ -203,7 +197,7 @@ function App() {
               card={card}
               isChecking={isChecking}  // isCheckingをCardコンポーネントに渡す
               selectedCards={selectedCards}
-              setselectedCards={setselectedCards}
+              setSelectedCards={setSelectedCards}
               playSound={() => playSound(flipSound)}  // 効果音関数を渡す
               gameMode={gameMode}  // ゲームモードを渡す
             />
@@ -214,7 +208,7 @@ function App() {
             やり直す
           </button>
         <button onClick={resetGame} className="text-black bg-green-400 hover:bg-green-500 py-2 px-4 rounded">
-          難易度選択へ戻る
+          タイトルに戻る
         </button>
         </div>
         <div className="tries-count">

@@ -1,7 +1,7 @@
 import { useEffect, useState } from "react";
 
 // isChecking プロパティを追加
-const Card = ({ card, gameMode, isChecking, selectedCards, setselectedCards, playSound }) => {
+const Card = ({ card, gameMode, isChecking, selectedCards, setSelectedCards, playSound }) => {
   const [isFlipped, setIsFlipped] = useState(false);  // isFlipped に名前を変更
 
   const handleClick = () => {
@@ -14,7 +14,7 @@ const Card = ({ card, gameMode, isChecking, selectedCards, setselectedCards, pla
     playSound();
 
     // カードを選択カードのリストに追加
-    setselectedCards([...selectedCards, card]);
+    setSelectedCards([...selectedCards, card]);
   };
 
   // ゲームモードに応じた画像ソースを設定
