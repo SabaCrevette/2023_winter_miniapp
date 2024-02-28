@@ -1,7 +1,8 @@
-// Game.js
-import React from 'react';
-import Card from "./Card";
+// カードの状態や設定、ゲーム情報等ゲームの進行状況を提供するための処理をまとめたファイル
+import React from 'react';  // Reactライブラリをインポート
+import Card from "./Card";  // Cardコンポーネントをインポート
 
+// Gameコンポーネントを定義
 const Game = ({
     modeText,
     cards,
@@ -24,6 +25,8 @@ const Game = ({
             </div>
             <div className="cards-container grid grid-cols-2 sm:grid-cols-3 md:grid-cols-4 lg:grid-cols-5 gap-4">
                 {cards.map((card) => (
+                    // 各Cardに対して、Cardコンポーネントをレンダリング。
+                    // それぞれに必要なプロパティを渡す。
                     <Card
                         key={card.id}
                         card={card}
