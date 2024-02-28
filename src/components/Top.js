@@ -41,3 +41,22 @@ function Top({ isSoundEnabled, setIsSoundEnabled, startGame }) {
   }
   
   export default Top;
+
+// function Top({ isSoundEnabled, setIsSoundEnabled, startGame }) {
+// Topコンポーネントの定義。3つのpropsを受けとる。
+// isSoundEnabled（音が有効かどうかの状態）
+// setIsSoundEnabled（音の有効状態を切り替える関数）
+// startGame（ゲームを開始する関数）
+
+// <input type="checkbox"
+//  checked={isSoundEnabled}
+//  onChange={(e) => setIsSoundEnabled(e.target.checked)} />
+// 音をオンオフするためのチェックボックス。
+// checked属性がisSoundEnabledの値によって決定され、チェックボックスの状態がこの値と同期する。
+// onChangeイベントはチェックボックスが切り替えられるびに発生し、setIsSoundEnabled関数でisSoundEnabledの状態を更新する。
+
+// <button className="..." onClick={() => startGame('simple')}>初級</button>
+// <button className="..." onClick={() => startGame('advanced')}>上級</button>
+// onClickイベントにより、クリックするとstartGame関数が実行される。
+// 引数にsimpleとadvancedを渡すことでゲームモードを選択できるようにする。
+
