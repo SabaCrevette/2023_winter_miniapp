@@ -14,3 +14,14 @@ const Footer = () => {
 };
 
 export default Footer;
+
+// ---
+
+// const Footer = () => {
+// Footerアロー関数の定義
+
+// target="_blank"
+// リンクがクリックされたときに、リンク先のURLを新しいブラウザのタブで開くようにする。（現在のページは維持）
+// rel="noopener noreferrer
+// noopener：セキュリティリスクを減らす、新しいタブが元のタブのページに対してJavaScriptを実行することを防ぐ
+// noreferrer：リンククリック時にリファラ情報を送信することを防ぐ。前にいたページのURLを含めず、プライバシーを守る
